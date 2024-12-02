@@ -42,13 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstraction\IXSerialPort.cs" />
-    <Compile Include="Components\XSerialPort.cs" />
-    <Compile Include="Exceptions\DeviceNoPortException.cs" />
-    <Compile Include="Exceptions\PortAlreadyExistExcetpion.cs" />
-    <Compile Include="Models\XPortConfig.cs" />
+    <Compile Include="IniFile\Abstraction\IIniFileManager.cs" />
+    <Compile Include="IniFile\IniFileManager.cs" />
+    <Compile Include="IniFile\Models\IniKVPairs.cs" />
+    <Compile Include="IniFile\Models\Section.cs" />
+    <Compile Include="IniFile\Models\XIniFile.cs" />
+    <Compile Include="XSerialPort\Abstraction\IXSerialPort.cs" />
+    <Compile Include="XSerialPort\Components\XSerialPort.cs" />
+    <Compile Include="XSerialPort\Exceptions\DeviceNoPortException.cs" />
+    <Compile Include="XSerialPort\Exceptions\PortAlreadyExistExcetpion.cs" />
+    <Compile Include="XSerialPort\Models\XPortConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\XSerialPortFactory.cs" />
+    <Compile Include="XSerialPort\Services\XSerialPortFactory.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

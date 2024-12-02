@@ -68,6 +68,17 @@ namespace XPorter.Infrastructure.Components
             return _serialPort?.IsOpen == true;
         }
 
+        public void DTR_RTS_Control(bool DTRFlag,bool RTSFlag)
+        {
+            if(_serialPort.DtrEnable !=  DTRFlag)
+            {
+                _serialPort.DtrEnable = DTRFlag;
+            }
+            if(_serialPort.RtsEnable != RTSFlag)
+            {
+                _serialPort.RtsEnable = RTSFlag;
+            }
+        }
         private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             if (_serialPort != null && _serialPort.BytesToRead > 0)

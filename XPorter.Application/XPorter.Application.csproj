@@ -42,8 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="FormEvent\PortFormEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XPorter.Domain\XPorter.Domain.csproj">
+      <Project>{d827faa3-eab8-4f8b-93b2-d378c7fb02b5}</Project>
+      <Name>XPorter.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XPorter.Infrastructure\XPorter.Infrastructure.csproj">
+      <Project>{1283c99d-0671-4fc6-97d8-b6168d525459}</Project>
+      <Name>XPorter.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,8 +1,11 @@
 ﻿using System.Windows.Forms;
+using XPorter.Application.FormEvent;
+using XPorter.Domain;
+using XPorter.Infrastructure.Services;
 
 namespace XForm
 {
-    partial class Form1
+    partial class PortForm
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -52,8 +55,12 @@ namespace XForm
             this.btnSend = new System.Windows.Forms.Button();
             this.btnClearSend = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.grpSerialConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSendInterval)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtReceive
@@ -107,8 +114,9 @@ namespace XForm
             // 
             this.cmbPortName.Location = new System.Drawing.Point(70, 18);
             this.cmbPortName.Name = "cmbPortName";
-            this.cmbPortName.Size = new System.Drawing.Size(121, 20);
+            this.cmbPortName.Size = new System.Drawing.Size(121, 23);
             this.cmbPortName.TabIndex = 1;
+            this.cmbPortName.SelectedIndexChanged += new System.EventHandler(this.cmbPortName_SelectedIndexChanged);
             // 
             // lblBaudRate
             // 
@@ -122,7 +130,7 @@ namespace XForm
             // 
             this.cmbBaudRate.Location = new System.Drawing.Point(70, 48);
             this.cmbBaudRate.Name = "cmbBaudRate";
-            this.cmbBaudRate.Size = new System.Drawing.Size(121, 20);
+            this.cmbBaudRate.Size = new System.Drawing.Size(121, 23);
             this.cmbBaudRate.TabIndex = 3;
             // 
             // lblDataBits
@@ -137,7 +145,7 @@ namespace XForm
             // 
             this.cmbDataBits.Location = new System.Drawing.Point(70, 78);
             this.cmbDataBits.Name = "cmbDataBits";
-            this.cmbDataBits.Size = new System.Drawing.Size(121, 20);
+            this.cmbDataBits.Size = new System.Drawing.Size(121, 23);
             this.cmbDataBits.TabIndex = 5;
             // 
             // lblStopBits
@@ -152,7 +160,7 @@ namespace XForm
             // 
             this.cmbStopBits.Location = new System.Drawing.Point(70, 108);
             this.cmbStopBits.Name = "cmbStopBits";
-            this.cmbStopBits.Size = new System.Drawing.Size(121, 20);
+            this.cmbStopBits.Size = new System.Drawing.Size(121, 23);
             this.cmbStopBits.TabIndex = 7;
             // 
             // lblParity
@@ -167,7 +175,7 @@ namespace XForm
             // 
             this.cmbParity.Location = new System.Drawing.Point(70, 138);
             this.cmbParity.Name = "cmbParity";
-            this.cmbParity.Size = new System.Drawing.Size(121, 20);
+            this.cmbParity.Size = new System.Drawing.Size(121, 23);
             this.cmbParity.TabIndex = 9;
             // 
             // btnOpenClose
@@ -177,6 +185,7 @@ namespace XForm
             this.btnOpenClose.Size = new System.Drawing.Size(79, 30);
             this.btnOpenClose.TabIndex = 3;
             this.btnOpenClose.Text = "打开串口";
+            this.btnOpenClose.Click += new System.EventHandler(this.btnOpenClose_Click);
             // 
             // chkDTR
             // 
@@ -224,7 +233,7 @@ namespace XForm
             0,
             0});
             this.nudSendInterval.Name = "nudSendInterval";
-            this.nudSendInterval.Size = new System.Drawing.Size(105, 21);
+            this.nudSendInterval.Size = new System.Drawing.Size(105, 25);
             this.nudSendInterval.TabIndex = 8;
             this.nudSendInterval.Value = new decimal(new int[] {
             1000,
@@ -256,9 +265,34 @@ namespace XForm
             this.button1.TabIndex = 11;
             this.button1.Text = "关闭串口";
             // 
-            // Form1
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 424);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(635, 26);
+            this.statusStrip1.TabIndex = 12;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(73, 20);
+            this.toolStripStatusLabel1.Text = "串口状态:";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(91, 20);
+            this.toolStripStatusLabel2.Text = "name:value";
+            // 
+            // PortForm
             // 
             this.ClientSize = new System.Drawing.Size(635, 450);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtReceive);
             this.Controls.Add(this.txtSend);
@@ -271,13 +305,46 @@ namespace XForm
             this.Controls.Add(this.nudSendInterval);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.btnClearSend);
-            this.Name = "Form1";
+            this.Name = "PortForm";
             this.Text = "串口通讯";
             this.grpSerialConfig.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudSendInterval)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        #endregion
+
+        #region 窗体参数初始化代码
+        private void InitializeFormParams()
+        {
+            cmbDataBits.DataSource = PortHelperParams.GetDataBits();
+            cmbDataBits.DisplayMember = "key";
+            cmbDataBits.ValueMember = "value";
+            cmbDataBits.SelectedIndex = 0;
+
+            cmbBaudRate.DataSource = PortHelperParams.GetBaudRate();
+            cmbBaudRate.DisplayMember = "key";
+            cmbBaudRate.ValueMember = "value";
+            cmbBaudRate.SelectedIndex = 0;
+
+            cmbParity.DataSource = PortHelperParams.GetParity();
+            cmbParity.DisplayMember = "key";
+            cmbParity.ValueMember = "value";
+            cmbParity.SelectedIndex = 0;
+
+            cmbStopBits.DataSource = PortHelperParams.GetStopBits();
+            cmbStopBits.DisplayMember = "key";
+            cmbStopBits.ValueMember = "value";
+            cmbStopBits.SelectedIndex = 0;
+
+            cmbPortName.DataSource = XSerialPortFactory.SerialPortNames;
+            cmbPortName.SelectedIndex = 0;
+            var status = PortFormEvent.PortStatus(cmbPortName.SelectedValue.ToString()) ? "已开启" : "未开启";
+            statusStrip1.Items[1].Text = $"{cmbPortName.SelectedValue.ToString()}:{status}";
         }
 
         #endregion
@@ -304,6 +371,10 @@ namespace XForm
         private Button btnSend;
         private Button btnClearSend;
         private Button button1;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel toolStripStatusLabel2;
+        private PortFormEvent PortFormEvent = new PortFormEvent();
     }
 }
 

@@ -47,16 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="PortForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="PortForm.Designer.cs">
+      <DependentUpon>PortForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="PortForm.resx">
+      <DependentUpon>PortForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -80,6 +80,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XPorter.Application\XPorter.Application.csproj">
+      <Project>{8abff432-7a1e-4ca9-8fb3-182538acf441}</Project>
+      <Name>XPorter.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XPorter.Domain\XPorter.Domain.csproj">
+      <Project>{d827faa3-eab8-4f8b-93b2-d378c7fb02b5}</Project>
+      <Name>XPorter.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XPorter.Infrastructure\XPorter.Infrastructure.csproj">
+      <Project>{1283c99d-0671-4fc6-97d8-b6168d525459}</Project>
+      <Name>XPorter.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
