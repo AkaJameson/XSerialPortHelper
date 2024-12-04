@@ -57,6 +57,7 @@ namespace XPorter.Infrastructure.Services
                 throw new System.Exception("出现未知错误");
             }
             result.Open();
+            return true;
 
         }
         /// <summary>
@@ -105,6 +106,16 @@ namespace XPorter.Infrastructure.Services
         public static bool HasBeenCreate(string portName)
         {
             return SerialPortDictionary.ContainsKey(portName);
+        }
+
+        public static void CloseAllPort()
+        {
+            foreach (var item in SerialPortDictionary)
+            {
+                item.Value.Close();
+                item.Value.Dispose();
+            }
+            SerialPortDictionary.Clear();
         }
     }
 }

@@ -264,6 +264,7 @@ namespace XForm
             this.button1.Size = new System.Drawing.Size(79, 30);
             this.button1.TabIndex = 11;
             this.button1.Text = "关闭串口";
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // statusStrip1
             // 
@@ -307,6 +308,7 @@ namespace XForm
             this.Controls.Add(this.btnClearSend);
             this.Name = "PortForm";
             this.Text = "串口通讯";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PortForm_FormClosed);
             this.grpSerialConfig.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudSendInterval)).EndInit();
             this.statusStrip1.ResumeLayout(false);
